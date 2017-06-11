@@ -21,25 +21,25 @@ Remarks
 Don't use this to actually exchange messages in private.
 */
 function reverseByCenter(s) {
-	var center;
-	var result;
+	var output,
+		firstHalf,
+		secondHalf;
+
 	if ( s.length % 2 !== 0 ) {
 		//	Word is uneven (odd)
-		center = s[Math.ceil(s.length/2) - 1 ];
-		//console.log(center);
-		result = s.substring(Math.ceil(s.length/2)) + s[Math.ceil(s.length/2 - 1)];
-		//result = s.substring(Math.ceil(s.length/2),  + Math.ceil(s.length/2) -1) + center;
-		result += s.substring( 0, Math.ceil(s.length/2) -1 );
-		console.log(result);
+		firstHalf = s.substring(Math.ceil(s.length/2));
+		var center = s[Math.ceil(s.length/2) - 1 ];
+		secondHalf = s.substring( 0, Math.ceil(s.length/2) -1 );
+		
+		output = firstHalf + center + secondHalf;
 	} else {
 		//	Word is even
-		result = s.substring(Math.ceil(s.length/2));
-		result += s.substring(0, Math.ceil(s.length/2) );
-		console.log(result);
+		firstHalf = s.substring( Math.ceil( s.length/2 ) );
+		secondHalf = s.substring(0, Math.ceil(s.length/2) );
+		output =  firstHalf + secondHalf;
 	}
-
-	return result;
+	return output;
 }
 
-reverseByCenter('america');
-reverseByCenter('seis');
+console.log('original word: ' + 'america, result: ' +reverseByCenter('america'));
+console.log('original word: ' + 'seis, result: ' + reverseByCenter('seis'));
