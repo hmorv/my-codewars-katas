@@ -28,3 +28,27 @@ nbMonths(8000, 8000, 1000, 1.5) should return [0, 0]
 We don't take care of a deposit of savings in a bank:-)
 */
 
+function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth){
+	var monthCount = 0,
+		moneySaved = 0,
+		currentPercentLossByMonth = percentLossByMonth,
+		currentPriceOldCar = startPriceOld,
+		currentPriceNewCar = startPriceNew,
+		percentDevaluation = 0.5;
+	
+	while ( moneySaved + currentPriceOldCar < currentPriceNewCar ) {
+		monthCount++;
+		if( monthCount % 2 === 0) {
+	  		//	Increase devaluation
+	  		currentPercentLossByMonth += percentDevaluation;
+  		}
+		moneySaved += savingperMonth;
+		//	Devaluate car values
+  		currentPriceOldCar -= currentPriceOldCar * currentPercentLossByMonth / 100;
+	  	currentPriceNewCar -= currentPriceNewCar * currentPercentLossByMonth / 100;
+  	}
+  	return [ monthCount, Math.round( moneySaved + currentPriceOldCar - currentPriceNewCar ) ];
+  }
+console.log('te' +0 % 2);
+
+console.log( nbMonths( 2000, 8000, 1000, 1.5 ) );
