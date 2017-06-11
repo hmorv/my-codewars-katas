@@ -29,7 +29,7 @@ We don't take care of a deposit of savings in a bank:-)
 */
 
 function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth){
-	var monthCount = 0,
+	var currentMonth = 0,
 		moneySaved = 0,
 		currentPercentLossByMonth = percentLossByMonth,
 		currentPriceOldCar = startPriceOld,
@@ -37,8 +37,8 @@ function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMon
 		percentDevaluation = 0.5;
 	
 	while ( moneySaved + currentPriceOldCar < currentPriceNewCar ) {
-		monthCount++;
-		if( monthCount % 2 === 0) {
+		currentMonth++;
+		if( currentMonth % 2 === 0) {
 	  		//	Increase devaluation
 	  		currentPercentLossByMonth += percentDevaluation;
   		}
@@ -47,8 +47,7 @@ function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMon
   		currentPriceOldCar -= currentPriceOldCar * currentPercentLossByMonth / 100;
 	  	currentPriceNewCar -= currentPriceNewCar * currentPercentLossByMonth / 100;
   	}
-  	return [ monthCount, Math.round( moneySaved + currentPriceOldCar - currentPriceNewCar ) ];
+  	return [ currentMonth, Math.round( moneySaved + currentPriceOldCar - currentPriceNewCar ) ];
   }
-console.log('te' +0 % 2);
 
 console.log( nbMonths( 2000, 8000, 1000, 1.5 ) );
