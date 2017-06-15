@@ -31,10 +31,11 @@ About PI : http://www.geom.uiuc.edu/~huberty/math5337/groupe/expresspi.html
 
 function iterPi(epsilon) {
 
-	var numberOfIterations = 0;
-	var approximationOfPi = 0;
-	var denominator = 1;
-	while( Math.abs( 4*approximationOfPi - ( Math.PI ) ) >= epsilon ) {
+	var numberOfIterations = 0,
+		approximationOfPi = 0,
+		denominator = 1;
+	
+	while( Math.abs( 4 * approximationOfPi - ( Math.PI ) ) >= epsilon ) {
 		numberOfIterations++;
 
 		if( numberOfIterations % 2 === 0 ) {
@@ -43,13 +44,9 @@ function iterPi(epsilon) {
 			approximationOfPi += ( 1 / ( denominator ) );
 		}
 		denominator += 2;
-		//console.log(approximationOfPi*4 + ' - ' + Math.PI +' = ' + Math.abs( approximationOfPi - ( Math.PI / 4.0 ) ));
 	}
 	
 	return [numberOfIterations, parseFloat((approximationOfPi*4).toFixed(10))];
 }
-//console.log(Math.PI/4);
 
-//console.log(1 - 1/3 + 1/5 - 1/7);
-
-console.log(iterPi(0.1));
+console.log( iterPi(0.01) );
