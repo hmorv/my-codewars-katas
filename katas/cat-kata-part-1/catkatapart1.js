@@ -50,12 +50,13 @@ Have fun!
 
 function peacefulYard(yard, minDistance) {
     // your code here
+    var noConflict;
+
     function calculateDistance( point1, point2 ) {
     	return Math.sqrt( Math.pow( point2[0] - point1[0], 2 ) + Math.pow( point2[1] - point1[1], 2 ) );
     }
-    function getCats( grid ) {
+    function getCatsPositions( grid ) {
     	result = [];
-    	var noConflict;
     	for ( var i = 0; i < grid.length; i ++ ) {
     		//	Traverse every string
     		var found;
@@ -63,42 +64,34 @@ function peacefulYard(yard, minDistance) {
     			result.push([i,grid[i].indexOf('L')]);
     		}
     		if ( grid[i].indexOf('M') != -1 ) {
-    				result.push([i, grid[i].indexOf('M')]);
-    			}
+				result.push([i, grid[i].indexOf('M')]);
+			}
     		if ( grid[i].indexOf('R') != -1 ) {
-    			result.push([i, grid[i].indexOf('R')]);
-    			}
-    			
-    		
+			result.push([i, grid[i].indexOf('R')]);
+			}
     	}
 
     	return result;
     }
 
-    catPositions = getCats( yard );
-    		console.log(catPositions);
+    catPositions = getCatsPositions( yard );
+
     switch ( catPositions.length ) {
     	case 2:
-    		if ( calculateDistance(catPositions[0], catPositions[1]) < minDistance) {
-    			noConflict = false;
-    		} else {
-    			noConflict = true;
-    		}
+    		noConflict = ( calculateDistance(catPositions[0], catPositions[1]) < minDistance ) ? false : true;
     	break;
+    	
     	case 3:
-    		if ( calculateDistance(catPositions[0], catPositions[1]) < minDistance || calculateDistance(catPositions[0], catPositions[2]) < minDistance || calculateDistance(catPositions[1], catPositions[2]) < minDistance) {
-    			noConflict = false;
-    		} else {
-    			noConflict = true;
-    		}
+    		noConflict = ( calculateDistance(catPositions[0], catPositions[1]) < minDistance || calculateDistance(catPositions[0], catPositions[2]) < minDistance || calculateDistance(catPositions[1], catPositions[2]) < minDistance ) ? false : true;
     	break;
+    	
     	default:
     		noConflict = true;
-    		break;
+		break;
     }
-    //var result =  calculateDistance([1,3], [4,7]);
     return noConflict;
 }
 
+//	example:
 console.log(peacefulYard(["------------", "---M--L--R--", "------------", "------------", "------------", "------------"], 6));
 
