@@ -14,37 +14,9 @@ race(80, 91, 37) => [3, 21, 49]
 Note: you can see some other examples in "Your test cases".
 */
 
-function race(v1, v2, g) {
-	// your code
-	function formatTime( time ) {
-		return [ Math.floor( time / 3600 ), Math.floor( time % 3600 / 60 ), Math.floor( time % 3600 % 60 ) ];
-	}
-
-	function convertSpeedToDistancePerSecond( speed ) {
-		return speed / 3600;
-	}
-
-	if ( v1 >= v2 ) {
-		return null;
-	}
-
-	var distanceTortoise1 = g;
-	var distanceTortoise2 = 0;
-
-	var distancePerSecondTortoise1 = convertSpeedToDistancePerSecond( v1 );
-	var distancePerSecondTortoise2 = convertSpeedToDistancePerSecond( v2 );
-	var secondsPast = 0;
-
-	while ( distanceTortoise1 > distanceTortoise2 ) {
-
-		distanceTortoise1 += distancePerSecondTortoise1;
-		distanceTortoise2 += distancePerSecondTortoise2;
-		secondsPast++;
-	}
-	console.log('tiempo en segundos: ' + secondsPast);
-
-	return formatTime(secondsPast);
-
+function race(v1, v2, g){
+  var time = g/(v2-v1);
+  return v2 > v1 ? [Math.floor(time), Math.floor(time*60%60), Math.floor(time*3600%60)] : null;
 }
 
 console.log(race(720, 850, 70));
