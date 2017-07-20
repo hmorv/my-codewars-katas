@@ -9,13 +9,38 @@ Math.floor()
 */
 
 Math.round = function(number) {
-  return 0; // TODO: fix this
+
+	var decimalPart = parseInt( number.toString().split(".")[1] || "" );
+	var output;
+
+	if ( decimalPart ) {
+		
+		if ( parseInt(decimalPart.toString()[0]) >= 5 ) {
+			decimalPart++;
+			output = Math.ceil(number);
+		} else {
+			output = Math.floor(number);
+		}
+	} else {
+		output = Math.floor(number);
+	}
+
+	return output;
 };
 
 Math.ceil = function(number) {
-  return 0; // TODO: fix this
+
+	return ( parseInt(number.toString().split(".")[1]) > 0 ) ? Math.floor(number) + 1 : Math.floor(number);
 };
 
 Math.floor = function(number) {
-  return 0; // TODO: fix this
+  return parseInt(number);
 };
+
+
+console.info(Math.round(0.1));
+console.info(Math.round(0.4));
+console.info(Math.ceil(0.5));
+console.info(Math.ceil(1.0));
+console.info(Math.floor(1.3));
+console.info(Math.floor(1.5));
