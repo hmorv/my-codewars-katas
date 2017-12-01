@@ -39,23 +39,22 @@
 */
 
 var SequenceSum = (function() {
-  function SequenceSum() {}
+	function SequenceSum() {}
 
-  SequenceSum.showSequence = function(count) {
-  if(count <= 0) {
-    return 0;
-    }
-  var res = 0;
-  for(var i = count; i > 0; i--) {
-    res += i;
-  }
-  return res;
-    // for
-      //while
-  };
+	SequenceSum.showSequence = function(count) {
+		if(count < 0)
+			return 0;
 
-  return SequenceSum;
+		var res = 0;
+		var serie = '0';
+
+		for(var i = count; i > 0; i--) {
+			res += i;
+			serie += '+' + (count-i+1);
+		}
+		return serie + ' = ' + res;
+	};
+
+	return SequenceSum;
 
 })();
-
-
