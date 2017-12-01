@@ -22,5 +22,31 @@
 
 
 function timeCorrect(timestring) {
-	return "?";
+
+	function format(num) {
+		return ((num<10) ? '0'+num : num);
+	}
+
+	
+	var patternTimeString = /^([0-9][0-9]):[0-9][0-9]:[0-9][0-9]$/;
+	
+	if(typeof(timestring) == null || timestring === '')
+		return timestring;
+
+	if(!patternTimeString.test(timestring))
+		return null;
+
+	var tsArray = timestring.split(':');
+	var seconds = parseInt(tsArray[0])*3600 + parseInt(tsArray[1])*60 + parseInt(tsArray[2]);
+	
+	tsArray[0] = parseInt(seconds / 3600) % 24;
+	tsArray[1] = parseInt((seconds - (3600 * tsArray[0])) / 60) % 60;
+	tsArray[2] = seconds % 60;
+
+	for(var i = 0; i < tsArray.length; i++) {
+		tsArray[i] = format(tsArray[i], 10);
+	}
+	return tsArray.join(':');
 }
+
+console.log(timeCorrect('25:40:70'));
