@@ -1,0 +1,3 @@
+function damagedOrSunk (board, attacks) {
+	//
+}
