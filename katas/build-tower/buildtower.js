@@ -36,6 +36,39 @@ and a tower of 6 floors looks like below
 ]
 */
 
+// function towerBuilder(nFloors) {
+//   // build here
+//   //2*nFloors-1
+
+//   function buildLine(length, index) {
+//   	//lenght of line (2*nFloors-1), index of tower floor
+//   	var line;
+  	
+//   	return line;
+//   }
+
+//   var i;
+//   var result = [];
+
+//   for (i = 0; i < nFloors; i++) {
+//   	var line;
+//   }
+// }
+
 function towerBuilder(nFloors) {
-  // build here
+  var spaces = nFloors-1;
+  var asterist = 1;
+  var result = [];
+
+  for(var i = 1; i < nFloors; i++) {
+    var line = '';
+    for(var j = 0; j < i; j++) {
+      line += "*";
+    }
+      result.push(line);
+  }
+
+  return result;
 }
+
+console.log(towerBuilder(5));
