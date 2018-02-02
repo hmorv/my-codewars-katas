@@ -55,21 +55,23 @@ and a tower of 6 floors looks like below
 //   }
 // }
 function towerBuilder(nFloors) {
-  var spaces = nFloors-1;
+  
   var result = [];
 
-  for(var i = 0; i < nFloors; i++) {
-    var line = "";
+  for(var currentFloor = 0; currentFloor < nFloors; currentFloor++) {
+    
+    var asterists = "";
     var blanks = "";
-    for(var k = nFloors-(i); k > 1; k--) {
+    
+    for(var indexBlanks = nFloors-(currentFloor); indexBlanks > 1; indexBlanks--) {
       blanks += " ";
     }
     
-    for(var j = 0; j < 2*i+1; j++) {
-      line += "*";
+    for(var indexAsterists = 0; indexAsterists < 2*currentFloor+1; indexAsterists++) {
+      asterists += "*";
     }
     
-    result.push(blanks+line+blanks);
+    result.push(blanks+asterists+blanks);
   }
 
   return result;
