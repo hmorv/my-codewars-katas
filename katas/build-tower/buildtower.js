@@ -43,7 +43,7 @@ and a tower of 6 floors looks like below
 //   function buildLine(length, index) {
 //   	//lenght of line (2*nFloors-1), index of tower floor
 //   	var line;
-  	
+
 //   	return line;
 //   }
 
@@ -57,15 +57,20 @@ and a tower of 6 floors looks like below
 
 function towerBuilder(nFloors) {
   var spaces = nFloors-1;
-  var asterist = 1;
   var result = [];
 
-  for(var i = 1; i < nFloors; i++) {
-    var line = '';
-    for(var j = 0; j < i; j++) {
+  for(var i = 0; i < nFloors; i++) {
+    var line = "";
+    var blanks = " ";
+    for(var k = nFloors-i; k > 1; k--) {
+      blanks += " ";
+    }
+    
+    for(var j = 0; j < 2*i+1; j++) {
       line += "*";
     }
-      result.push(line);
+    
+    result.push(blanks+line+blanks);
   }
 
   return result;
