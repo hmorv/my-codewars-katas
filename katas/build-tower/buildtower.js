@@ -54,15 +54,14 @@ and a tower of 6 floors looks like below
 //   	var line;
 //   }
 // }
-
 function towerBuilder(nFloors) {
   var spaces = nFloors-1;
   var result = [];
 
   for(var i = 0; i < nFloors; i++) {
     var line = "";
-    var blanks = " ";
-    for(var k = nFloors-i; k > 1; k--) {
+    var blanks = "";
+    for(var k = nFloors-(i); k > 1; k--) {
       blanks += " ";
     }
     
@@ -76,4 +75,4 @@ function towerBuilder(nFloors) {
   return result;
 }
 
-console.log(towerBuilder(5));
+console.log(towerBuilder(1));
