@@ -44,25 +44,14 @@ plugboard.process(".") ==> "."
 
 Plugboard = function(wires) {
 	//your code here
-  	if(wires === '') throw "wrong format";
-    if(typeof wires == 'undefined' || wires.length === 0) {
-    	wires = [];
-    	return;
-    }
-	if(wires.length > 21) throw "wrong format";
-  	if(wires.length % 2 !== 0 ) throw 'wrong format';
+	wires = wires || '';
 
-  	wires.replace(/ +/g, "");
+  	if (!wires.match(/^([A-Z][A-Z]){0,10}$/)) throw "wrong format";
+    
+  	if (wires.match(/(.).*\1/)) throw "wrong format";
 
   	var groups = [];
   	var index = 0;
-  	
-  	for(var i = 0; i < wires.length; i++) {
-  		//check duplicities
-  		for(var j = i+1; j < wires.length; j++) {
-  			if(wires[i] == wires[j]) throw "wrong format";
-  		}
-  	}
 
   	for (var k = 0; k < wires.length; k+=2) {
   		//push wire pairs
