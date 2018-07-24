@@ -71,12 +71,7 @@ Plugboard = function(wires) {
   			if(!this.wires[i].includes(wire)) {
   				continue;
   			} else {
-  				return (this.wires[i][0] == wire) ? this.wires[i][1]; : this.wires[i][0];;
-  				if(this.wires[i][0] == wire) {
-  					return this.wires[i][1];
-  				} else {
-  					return this.wires[i][0];
-  				}
+  				return (this.wires[i][0] == wire) ? this.wires[i][1] : this.wires[i][0];
   			}
   		}
   		return wire;
