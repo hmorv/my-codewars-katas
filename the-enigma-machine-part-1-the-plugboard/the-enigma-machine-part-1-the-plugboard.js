@@ -47,7 +47,6 @@ Plugboard = function(wires) {
 	wires = wires || '';
 
   	if (!wires.match(/^([A-Z][A-Z]){0,10}$/)) throw "wrong format";
-    
   	if (wires.match(/(.).*\1/)) throw "wrong format";
 
   	var groups = [];
@@ -72,6 +71,7 @@ Plugboard = function(wires) {
   			if(!this.wires[i].includes(wire)) {
   				continue;
   			} else {
+  				return (this.wires[i][0] == wire) ? this.wires[i][1]; : this.wires[i][0];;
   				if(this.wires[i][0] == wire) {
   					return this.wires[i][1];
   				} else {
