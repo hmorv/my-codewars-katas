@@ -44,18 +44,13 @@ plugboard.process(".") ==> "."
 
 Plugboard = function(wires) {
 	//your code here
-  	if(wires === '') throw "1wrong format";
+  	if(wires === '') throw "wrong format";
     if(typeof wires == 'undefined' || wires.length === 0) {
     	wires = [];
     	return;
     }
-	if(wires.length > 21) throw "2wrong format";
-  	if(wires.length % 2 !== 0 ) throw '3wrong format';
-
-  	if(wires.length == 0) {
-  		this.wires = [];
-  		return;
-  	}
+	if(wires.length > 21) throw "wrong format";
+  	if(wires.length % 2 !== 0 ) throw 'wrong format';
 
   	wires.replace(/ +/g, "");
 
@@ -63,23 +58,27 @@ Plugboard = function(wires) {
   	var index = 0;
   	
   	for(var i = 0; i < wires.length; i++) {
+  		//check duplicities
   		for(var j = i+1; j < wires.length; j++) {
   			if(wires[i] == wires[j]) throw "wrong format";
   		}
   	}
 
   	for (var k = 0; k < wires.length; k+=2) {
+  		//push wire pairs
   		groups.push([wires[k], wires[k+1]]);
   		index++;
   	}
 
+  	//finally
   	this.wires = groups;
 
   };
-  
+
   Plugboard.prototype.process = function(wire){
   	//your code here
   	if(this.wires.length > 0) {
+  		//if wires defined, go
   		for(var i = 0; i < this.wires.length; i++) {
   			if(!this.wires[i].includes(wire)) {
   				continue;
@@ -93,7 +92,7 @@ Plugboard = function(wires) {
   		}
   		return wire;
   	} else {
-  		console.log('aqui!');
+  		//return same key
   		return wire;
   	}
   };
