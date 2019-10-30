@@ -1,5 +1,5 @@
 function getAllPrimeFactors(n) {
-    if (isNaN(n) || n <= 0 || (! Number.isInteger(n))) {
+    if (isNaN(n) || (! Number.isInteger(n)) || n <= 0) {
         return [];
     }
 
@@ -11,19 +11,20 @@ function getAllPrimeFactors(n) {
     let i = 2;
     let j = 2;
     let number = n;
+    let isDivisible;
 
     for (; i <= number; i++) {
-        let isPrime = number % i === 0;
-        if (isPrime) {
+        isDivisible = number % i === 0;
+        if (isDivisible) {
             result.push(i);
             number /= i;
         }
-        while (isPrime) {
+        while (isDivisible) {
             if (number % i === 0) {
                 result.push(i);
                 number /= i;
             } else {
-                isPrime = false;
+                isDivisible = false;
             }
         }
     }
@@ -32,10 +33,12 @@ function getAllPrimeFactors(n) {
 }
 
 function getUniquePrimeFactorsWithCount(n) {
+    //    it will count number of occurrences of each element
+    //    and add it to powers array
     let factors = [];
     let powers = [];
     let primes = getAllPrimeFactors(n);
-    let i = 0
+    let i = 0;
 
     if (primes.length === 0) {
         return [[], []];
@@ -43,10 +46,10 @@ function getUniquePrimeFactorsWithCount(n) {
 
     while (i < primes.length) {
         let actualElement = primes[i];
-        let counter = 0;
+        let power = 0;
         for (let j = i; j < primes.length; j++) {
             if (primes[j] == actualElement) {
-                counter++;
+                power++;
                 i++;
             } else {
                 i = j;
@@ -54,7 +57,7 @@ function getUniquePrimeFactorsWithCount(n) {
             }
         }
         factors.push(actualElement);
-        powers.push(counter);
+        powers.push(power);
     }
 
   return [factors, powers];
@@ -63,25 +66,20 @@ function getUniquePrimeFactorsWithCount(n) {
 function getUniquePrimeFactorsWithProducts(n) { 
 
     let result = [];
+    let i = 0;
+    let factorProduct;
 
     primes = getUniquePrimeFactorsWithCount(n);
     if (primes[0].length === 0 || primes[1].length === 0) {
         return result;
     }
 
-    for(let i = 0; i < primes.length; i++) {
-        let product = primes[0][i] ** primes[1][i];
-        if (Number.isNaN(product)) {
-            product = 0;
-        } else {
-        result.push(product);
+    for(; i < primes.length; i++) {
+        factorProduct = primes[0][i] ** primes[1][i];
+        if (! Number.isNaN(factorProduct)) {
+        result.push(factorProduct);
         }
     }
 
     return result;
 }
-
-
-console.log(getAllPrimeFactors(1));
-console.log(getUniquePrimeFactorsWithCount(1));
-console.log(getUniquePrimeFactorsWithProducts(1));
