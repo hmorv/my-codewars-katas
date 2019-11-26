@@ -1,0 +1,3 @@
+function scoreHand(cards) {
+    // TODO
+}
